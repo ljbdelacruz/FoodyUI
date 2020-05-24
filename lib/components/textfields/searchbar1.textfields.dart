@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Searchbar1TextFields extends StatelessWidget {
-  Searchbar1TextFieldsVM vm;
+  final Searchbar1TextFieldsVM vm;
   Searchbar1TextFields(this.vm);
   @override
   Widget build(BuildContext context) {
-    
   }
-}  
+}
 
 class Searchbar1TextFieldsVM{
   bool enabled=true;
