@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody_ui/theme/lightcolor.theme.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 
@@ -47,7 +47,7 @@ class ThumbnailImage extends StatelessWidget {
             ),
             // color: Theme.of(context).backgroundColor,
           ),
-          child: Image.asset(image),
+          child: CachedNetworkImage(imageUrl: image,),
         ));
   }
 }

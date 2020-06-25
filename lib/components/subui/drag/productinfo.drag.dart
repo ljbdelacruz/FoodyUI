@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:foody_ui/components/image/profilephoto.image.dart';
+import 'package:foody_ui/components/image/profilephoto1.image.dart';
 import 'package:foody_ui/components/label/titletext.label.dart';
 import 'package:foody_ui/theme/lightcolor.theme.dart';
+import 'package:foody_ui/typdef/mytypedef.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductInfoDragSubUI extends StatelessWidget {
   final ProductInfoDragSubUIVM vm;
-  ProductInfoDragSubUI(this.vm);
+  final NormalCallback merchantClick;
+  ProductInfoDragSubUI(this.vm, this.merchantClick);
   @override
   Widget build(BuildContext context) {
     return _detailWidget(context);
@@ -71,10 +76,6 @@ class ProductInfoDragSubUI extends StatelessWidget {
                             children: <Widget>[
                               SmoothStarRating(
                                 allowHalfRating: false,
-                                // onRatingChanged: (v) {
-                                //   // rating = v;
-                                //   // setState(() {});
-                                // },
                                 starCount: 5,
                                 rating: vm.rating,
                                 size: 20,
@@ -99,17 +100,27 @@ class ProductInfoDragSubUI extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                // _availableColor(),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 _description(),
+                Padding(padding:EdgeInsets.only(top:20), child:SingleChildScrollView(scrollDirection: Axis.horizontal,child: _buttons())),
+                Padding(padding:EdgeInsets.only(top:50), child: merchantOwnerInfo())
               ],
             ),
           ),
         );
       },
     );
+  }
+
+
+  Widget merchantOwnerInfo(){
+    return GestureDetector(
+      onTap: merchantClick,
+      child: Container(child:Row(children:[
+      ProfilePhoto1Image(ProfilePhoto1ImageVM(vm.photoMerchant, 70, 70), (){}),
+      Column(children: [
+        Padding(padding: EdgeInsets.only(left:10), child:Text("Merchant Name Here"),)
+      ],)
+    ])));
   }
 
   Widget _availableSize(BuildContext context) {
@@ -170,6 +181,11 @@ class ProductInfoDragSubUI extends StatelessWidget {
       ],
     );
   }
+  Widget _buttons(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: vm.buttons,);
+  }
 
 
 
@@ -183,6 +199,8 @@ class ProductInfoDragSubUIVM{
   int reviewer;
   String reviewerDisplay="0";
   List<ServingsUIVM> servings = [];
+  List<Widget> buttons = [];
+  String photoMerchant;
 
   ProductInfoDragSubUIVM(){
     this.title="Queens Burger asdasdasdasdadasd";
@@ -206,6 +224,7 @@ class ProductInfoDragSubUIVM{
     }else{
       this.reviewerDisplay=this.reviewer.toString();
     }
+    photoMerchant="https://nerdreactor.com/wp-content/uploads/2017/09/490bcbdfb730adb3dbcf33cd9301622e-thor-avengers-loki-thor.jpg";
   }
   selectServing(int index){
     this.servings.forEach((item){item.isSelected=false;});

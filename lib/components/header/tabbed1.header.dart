@@ -7,6 +7,7 @@ class Tabbed1Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Text(
             vm.title,

@@ -1,29 +1,29 @@
 
 
 
-
-
-
-
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:foody_ui/typdef/mytypedef.dart';
-import 'package:foody_ui/util/string_util.dart';
-import 'package:foody_ui/util/text_style_util.dart';
+import '../../../../typdef/mytypedef.dart';
 
-class ItemCells extends StatelessWidget {
-  final NormalCallback onClick;
-  final ItemCellsVM vm;
-  ItemCells(this.vm, this.onClick);
+class ProductItem1Cells extends StatefulWidget {
+  final ProductItem1CellsVM vm;
+  final NormalCallback click;
+  ProductItem1Cells(this.vm, this.click);
+  @override
+  ProductItem1CellsState createState() => ProductItem1CellsState();
+}
+class ProductItem1CellsState extends State<ProductItem1Cells> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+       onTap: widget.click, child:Container(height: widget.vm.height, width:MediaQuery.of(context).size.width,
+       child: Container(
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
       child: Card(
-        color:vm.bgColor,
+        color:widget.vm.bgColor,
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
@@ -31,14 +31,14 @@ class ItemCells extends StatelessWidget {
         ),
         elevation: 0.0,
         child: InkWell(
-          onTap: onClick,
+          onTap: widget.click,
           child: Row(
             children: <Widget>[
               CachedNetworkImage(
                 fit: BoxFit.cover,
-                height: 96,
+                height: widget.vm.height,
                 width: 96,
-                imageUrl: vm.imageUrl,
+                imageUrl: widget.vm.image,
               ),
               Container(
                 width: 24,
@@ -47,15 +47,16 @@ class ItemCells extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    vm.name,
-                    style: Theme.of(context).textTheme.subtitle,
+                    widget.vm.title,
+                    style: widget.vm.titleStyle,
                   ),
+                  Padding(padding: EdgeInsets.only(bottom:5), child:Text(widget.vm.currency+" "+widget.vm.price.toString(), style:widget.vm.priceStyle)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Icon(
                         Icons.star,
-                        color: vm.starColor,
+                        color: widget.vm.starColor,
                         size: 16,
                       ),
                       Container(
@@ -63,7 +64,7 @@ class ItemCells extends StatelessWidget {
                       ),
                       Text(
                         //3.0(5 Reviews)
-                        vm.rating,
+                        widget.vm.rating.toString(),
                         style: Theme.of(context).textTheme.body1,
                       ),
                     ],
@@ -71,18 +72,7 @@ class ItemCells extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        //status AVAILABLE or UNAVAILABLE
-                        vm.status,
-                        style: vm.isAvailable ? TextStyleUtil.itemCellAvailable : TextStyleUtil.itemCellUnavailable,
-                      ),
-                      Text(
-                        "  ●  ",
-                      ),
-                      Text(
-                        vm.distance,
-                        style: Theme.of(context).textTheme.body1,
-                      ),
+
                     ],
                   ),
                 ],
@@ -91,21 +81,25 @@ class ItemCells extends StatelessWidget {
           ),
         ),
       ),
-    );
+    )
+  ));
   }
 }
 
-class ItemCellsVM{
-  Color bgColor;
+class ProductItem1CellsVM{
+  String image;
+  String title;
+  TextStyle titleStyle;
+
+  double rating;
+  double price;
+  TextStyle priceStyle;
+
+  String currency;
+  double width;
+  double height;
   Color starColor=Colors.yellow;
-  String imageUrl;
-  String name;
-  String rating;
-  String status;
-  bool isAvailable;
-  String distance;
-  int limit;
-  ItemCellsVM(this.bgColor,this.starColor, this.imageUrl, this.name, this.rating, this.status, this.isAvailable, this.distance, this.limit){
-    this.name=StringUtil.stringWithHellip(this.name, limit);
-  }
+  Color bgColor = Colors.white;
+
+  ProductItem1CellsVM(this.image, this.title, this.titleStyle, this.rating, this.price, this.priceStyle, this.currency, this.width, this.height);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foody_ui/components/label/titletext.label.dart';
 import 'package:foody_ui/theme/lightcolor.theme.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 class AnimatedImage extends StatelessWidget {
@@ -26,7 +26,7 @@ class AnimatedImage extends StatelessWidget {
               fontSize: 160,
               color: LightColor.darkgrey,
             ),
-            Image.asset(vm.image)
+            CachedNetworkImage(imageUrl: vm.image,)
           ],
         ),
       );

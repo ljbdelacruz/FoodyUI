@@ -5,21 +5,22 @@ import 'package:foody_ui/util/string_util.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:polygon_clipper/polygon_clipper.dart';
 
+import '../../../../typdef/mytypedef.dart';
+
 class Badge1Cells extends StatelessWidget {
   final Badge1CellsVM vm;
-  Badge1Cells(this.vm);
+  final NormalCallback click;
+  Badge1Cells(this.vm, this.click);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-                              onTap: () {
-                                //TODO: badge on click
-                              },
+                              onTap: click,
                               child: Container(
                                   margin: EdgeInsets.only(right: 10),
                                   padding: EdgeInsets.only(
                                       top: 10, right: 25, bottom: 13, left: 10),
-                                  width: 234,
-                                  height: 94,
+                                  width: MediaQuery.of(context).size.width,
+                                  // height: 94,
                                   decoration: BoxDecoration(
                                     color: Color.fromRGBO(244, 245, 248, 1),
                                     borderRadius:

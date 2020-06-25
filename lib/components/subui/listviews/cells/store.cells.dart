@@ -8,26 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foody_ui/util/string_util.dart';
 import '../../../../typdef/mytypedef.dart';
-import '../../../../util/outlined_style_util.dart';
 
-class ExploreMenuCell extends StatelessWidget {
-  final ExploreMenuCellVM vm;
+class StoreMenuCells extends StatefulWidget {
+  final StoreMenuCellsVM vm;
   final NormalCallback click;
-  ExploreMenuCell(this.vm, this.click);
+  StoreMenuCells(this.vm, this.click);
+  @override
+  StoreMenuCellsState createState() => StoreMenuCellsState();
+}
+class StoreMenuCellsState extends State<StoreMenuCells> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: click, child:Container(height: vm.height, width:MediaQuery.of(context).size.width,
+       onTap: widget.click, child:Container(height: widget.vm.height, width:MediaQuery.of(context).size.width,
        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Stack(
                                 children: <Widget>[
                                   CachedNetworkImage(
-                                    imageUrl: vm.image,
+                                    imageUrl: widget.vm.image,
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
-                                      height: vm.height,
+                                      height: widget.vm.height,
                                       width: MediaQuery.of(context).size.width,
                                       decoration: BoxDecoration(
                                         color: Colors.grey,
@@ -54,10 +57,13 @@ class ExploreMenuCell extends StatelessWidget {
                                     top: 7,
                                     child: IconButton(
                                       onPressed: () {
-                                        //TODO Remove to Favorite function
+                                        setState(() {
+                                          widget.vm.isFav=!widget.vm.isFav;
+                                          widget.vm.favIcon=widget.vm.isFav ? Icons.favorite : Icons.favorite_border;
+                                        });
                                       },
                                       icon: Icon(
-                                        Icons.favorite_border,
+                                        widget.vm.favIcon,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -65,7 +71,7 @@ class ExploreMenuCell extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                '${vm.distance}',
+                                '${widget.vm.distance}',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
@@ -73,7 +79,7 @@ class ExploreMenuCell extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '${vm.title}',
+                                '${widget.vm.title}',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -87,7 +93,7 @@ class ExploreMenuCell extends StatelessWidget {
                                     size: 18,
                                   ),
                                   Text(
-                                    '${vm.rating}',
+                                    '${widget.vm.rating}',
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
@@ -101,7 +107,9 @@ class ExploreMenuCell extends StatelessWidget {
   }
 }
 
-class ExploreMenuCellVM{
+class StoreMenuCellsVM{
+  IconData favIcon=Icons.favorite_border;
+  bool isFav=false;
   String image;
   String distance;
   String title;
@@ -109,7 +117,8 @@ class ExploreMenuCellVM{
   int limit=10;
   double width;
   double height;
-  ExploreMenuCellVM(this.image, this.distance, this.title, this.rating, this.limit, this.width, this.height){
+  StoreMenuCellsVM(this.image, this.distance, this.title, this.rating, this.limit, this.width, this.height){
     this.title=StringUtil.stringWithHellip(this.title, limit);
+    favIcon=isFav ? Icons.favorite : Icons.favorite_border;
   }
 }
