@@ -13,6 +13,18 @@ class DashboardSideMenu extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
+    List<Widget> items = [];
+    vm.items.forEach((i) { 
+      items.add(ListTile(
+          leading: Image.asset(i.image, width:30, height:30),
+          title: Text(i.title),
+          onTap: (){
+            Navigator.pop(context);                
+            _sideMenuOnClick(i.value);
+          },
+        ));
+    });
+
     return Drawer(
       child: ListView(
       padding: EdgeInsets.zero,
@@ -26,15 +38,7 @@ class DashboardSideMenu extends StatelessWidget {
             Text(vm.subDesc, style: TextStyle(fontSize: 15, color:Colors.white),)
           ],)
         ),
-        for ( var i in vm.items ) 
-        ListTile(
-          leading: Image.asset(i.image, width:30, height:30),
-          title: Text(i.title),
-          onTap: (){
-            Navigator.pop(context);                
-            _sideMenuOnClick(i.value);
-          },                    
-        ),
+        Column(children:items),
       ],
     ),
     );

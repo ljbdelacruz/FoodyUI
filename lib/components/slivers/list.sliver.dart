@@ -10,9 +10,7 @@ class ListSliver extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
           delegate: SliverChildListDelegate(
-            [
-              ...vm.items.map((view)=>view)
-            ],
+            vm.items,
           ),
     );
   }

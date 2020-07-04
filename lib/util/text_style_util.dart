@@ -18,4 +18,9 @@ class TextStyleUtil{
 
 
 
+  static TextStyle wUITextFieldLabel({Color color = Colors.white, double fontSz = 10}){
+    return TextStyle(color:color, fontSize:fontSz, fontWeight: FontWeight.bold);
+  }
+
+
 }

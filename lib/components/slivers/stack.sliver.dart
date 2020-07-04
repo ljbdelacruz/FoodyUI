@@ -11,9 +11,7 @@ class StackSliver extends StatelessWidget {
     return SliverGrid(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: vm.crossAxisCount),
           delegate: SliverChildListDelegate(
-            [
-              ...vm.items.map((view)=> view),
-            ],
+            vm.items,
           ),
     );
   }

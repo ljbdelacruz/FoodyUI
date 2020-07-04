@@ -7,9 +7,7 @@ class CustomScrollSlivers extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       scrollDirection: vm.scrollDirection,
-      slivers: [
-        ...vm.items.map((item)=>item)
-      ],
+      slivers: vm.items,
     );
   }
 }

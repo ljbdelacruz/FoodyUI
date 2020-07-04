@@ -22,9 +22,7 @@ class Tabbed1Header extends StatelessWidget {
               child: TabBar(
                 labelColor: Colors.black,
                 isScrollable: true,
-                tabs: <Widget>[
-                  ...vm.tabs.map((tab)=>tab)
-                ],
+                tabs: vm.tabs,
               ),
             ),
           ),

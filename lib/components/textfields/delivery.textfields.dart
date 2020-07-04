@@ -18,8 +18,7 @@ class DeliveryTextFieldsState extends State<DeliveryTextFields> {
     return TextFormField(
                       controller: widget.vm.controller,
                       keyboardType: TextInputType.emailAddress,
-                      // onSaved: (input) => _con.user.email = input,
-                      // validator: (input) => !input.contains('@') ? S.of(context).should_be_a_valid_email : null,
+                      obscureText: widget.vm.isObscure,
                       decoration: InputDecoration(
                         labelText: widget.vm.label,
                         labelStyle: TextStyle(color: widget.vm.labelStyleColor),
@@ -27,9 +26,9 @@ class DeliveryTextFieldsState extends State<DeliveryTextFields> {
                         hintText: widget.vm.placeholder,
                         hintStyle: TextStyle(color: Theme.of(context).focusColor.withOpacity(0.7)),
                         prefixIcon: Icon(widget.vm.icon, color: widget.vm.iconColor),
-                        border: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.2))),
-                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.5))),
-                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.2))),
+                        border: OutlineInputBorder(borderSide: BorderSide(color: widget.vm.bColor)),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: widget.vm.bColor)),
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: widget.vm.bColor)),
                       ),
                     );
   }
@@ -42,5 +41,7 @@ class DeliveryTextFieldsVM{
   String label;
   IconData icon;
   Color iconColor;
-  DeliveryTextFieldsVM(this.controller, this.label, {this.placeholder = "", this.labelStyleColor = Colors.blue, this.icon = Icons.email, this.iconColor = Colors.blue});
+  bool isObscure;
+  Color bColor;
+  DeliveryTextFieldsVM(this.controller, this.label, {this.placeholder = "", this.labelStyleColor = Colors.blue, this.icon = Icons.email, this.iconColor = Colors.blue, this.isObscure = false, this.bColor = Colors.white});
 }

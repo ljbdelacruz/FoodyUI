@@ -19,9 +19,7 @@ class RoundedAlertDialog{
                             key: formKey,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
-                              children:[
-                                ...widgets.map((item)=>item)
-                              ],
+                              children:widgets,
                             ),
                           ),
                         ],
