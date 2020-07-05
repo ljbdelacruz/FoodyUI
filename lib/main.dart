@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:foody_ui/apptheme/delivery.theme.dart';
+import 'package:foody_ui/apptheme/ljui.theme.dart';
 import 'package:foody_ui/apptheme/walletui.theme.dart';
 import 'package:foody_ui/components/textfields/delivery.textfields.dart';
 import 'package:foody_ui/components/textfields/delivery1.textfields.dart';
-import 'package:foody_ui/services/color.service.dart';
-import 'package:foody_ui/subui/textfields.subui.dart';
+import 'package:foody_ui/pages/wUITab.page.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,18 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: MyHomePage(title: ''),
+      home:WUITabPage()
     );
   }
 }
@@ -38,13 +30,14 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   HomeControllerSetupVM vm = HomeControllerSetupVM();
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  TabController _controller;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = TabController(vsync: this, length: 2);
   }
 
   @override
@@ -54,57 +47,54 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: SingleChildScrollView(child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height:30),
+            text(),
             radioButtons(),
-            textFields()
+            textFields(),
+            tableViewCells(),
           ],
         ),
-      ),
+      )),
     );
   }
 
+  Widget text(){
+    return Column(children:[
+      WalletUITheme.instance.text((){})
+    ]);
+  }
   Widget radioButtons(){
     return Container(child:Column(children:[
-      WalletUITheme.instance.walletUIButtons(context, vm.toggle, (){
-        setState((){
-          vm.toggle = !vm.toggle;
-        });
-      })
+      WalletUITheme.instance.walletUIButtons(context, vm.toggle, toggle)
     ]));
   }
   Widget textFields(){
     return Container(child:Column(children:[
-      DeliveryUITheme.instance.deliveryUITextFields(context, vm.textField1)
+      WalletUITheme.instance.walletUITextFields(context),
+      DeliveryUITheme.instance.deliveryUITextFields(context, vm.textField1),
+      LJThemeUI.instance.textFields()
     ]));
   }
-
-  Widget deliveryUITextFields(){
-    return Container(
-      width:MediaQuery.of(context).size.width-100,
-      height:MediaQuery.of(context).size.height-96,
-      // color:Colors.black,
-      child:Column(children:[
-        SizedBox(height:30),
-        TextFieldSubUI.instance.dfUITextField1(vm.textField1, "Email or Username", iColor:Colors.grey, tColor:Colors.grey, bColor:ColorsService.instance.primaryColor()),
-        SizedBox(height:30),
-        TextFieldSubUI.instance.dfUITextfield1Pass(vm.textField1, "Password", placeholder:"****************", iColor:Colors.grey, tColor:Colors.grey, bColor:ColorsService.instance.primaryColor())
+  Widget tableViewCells(){
+    return Container(child:Column(children:[
+      WalletUITheme.instance.tableViewCells(vm.toggle, toggle)
     ]));
   }
-
+  toggle(){
+        setState((){
+          vm.toggle = !vm.toggle;
+        });
+  }
 }
 
 class HomeControllerSetupVM{
   TextEditingController textField1=TextEditingController();
-  DeliveryTextFieldsVM textField1VM;
-  DeliveryTextFields1VM textField2VM;
   bool toggle = false;
-  HomeControllerSetupVM(){
-    this.textField1VM=DeliveryTextFieldsVM(this.textField1, "Email", placeholder:"ljdelacruz123@gmail.com");
-    this.textField2VM=DeliveryTextFields1VM(this.textField1, "Password", placeholder: "••••••••••••");
-  }
+  HomeControllerSetupVM();
 
 
 

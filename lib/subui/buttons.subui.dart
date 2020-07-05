@@ -75,8 +75,26 @@ class ButtonSubUI{
   Widget wUISwitch({value = false}){
     return SwitchWidget(value:value);
   }
-
-
-
+  Widget wUINotifButton(double notifOpacity, NormalCallback click, {iColor = Colors.black, rDotColor = Colors.red, icon = Icons.notifications}){
+    return Column(
+            children: <Widget>[
+              Container(
+                transform: Matrix4.translationValues(10, 19, 0.0),
+                height: 5,
+                width: 5,
+                child: CircleAvatar(
+                  backgroundColor: rDotColor.withOpacity(notifOpacity),
+                ),
+              ),
+              IconButton(
+                icon: Icon(icon, color: iColor),
+                color: iColor,
+                onPressed: () {
+                  click();
+                },
+              ),
+            ],
+          );
+  }
 
 }

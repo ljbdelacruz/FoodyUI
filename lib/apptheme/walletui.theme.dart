@@ -4,13 +4,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foody_ui/subui/avatar.subui.dart';
 import 'package:foody_ui/subui/buttons.subui.dart';
+import 'package:foody_ui/subui/tableviewcells.subui.dart';
+import 'package:foody_ui/subui/tabs.subui.dart';
+import 'package:foody_ui/subui/text.subui.dart';
 import 'package:foody_ui/subui/textfields.subui.dart';
 import 'package:foody_ui/typdef/mytypedef.dart';
 
 class WalletUITheme{
   static WalletUITheme instance = WalletUITheme();
-  
+
   Widget walletUITextFields(BuildContext context){
     return Container(
       // color:Colors.black,
@@ -26,10 +30,37 @@ class WalletUITheme{
         children:[
         ButtonSubUI.instance.wUIRadioButton(value, click),
         SizedBox(height:30),
-        ButtonSubUI.instance.wUISwitch()
+        ButtonSubUI.instance.wUISwitch(),
+        ButtonSubUI.instance.wUINotifButton(1, (){
+          //TODO: click notif
+        })
+    ]));
+  }
+  Widget text(NormalCallback click){
+    return Container(
+      padding:EdgeInsets.only(left:20),
+      child:Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:[
+          TextSubUI.instance.wUITextButton(click, text:"Template 1", btnLbl:"Temp Btn 1")
     ]));
   }
 
+  Widget tableViewCells(bool value, NormalCallback click){
+    return Column(children:[
+      TableViewCellsSubUI.instance.wUITBCellIcon1(tColor:Colors.black),
+      TableViewCellsSubUI.instance.wUITBCellToggle1(value, click, tColor:Colors.black)
+    ]);
+  }
 
-
+  Widget tabs(BuildContext context, TabController controller){
+    return Container(width:MediaQuery.of(context).size.width, child:Column(children:[
+      Container(height:50, child: TabsSubUI.instance.wUITabs(["Settings", "Profile"], controller))
+    ]));
+  }
+  Widget avatars(){
+    return Container(child:Column(children:[
+      AvatarSubUI.instance.wUIAvatarImage1( WUIAvatarStyle("https://nerdreactor.com/wp-content/uploads/2017/09/490bcbdfb730adb3dbcf33cd9301622e-thor-avengers-loki-thor.jpg", isNetworkImage: true, width:100, height:100))
+    ]));
+  }
 }

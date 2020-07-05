@@ -127,4 +127,40 @@ class TextFieldSubUI{
   Widget dfUITextfield1Pass(TextEditingController controller, String label, {placeholder="", tColor = Colors.white, bColor = Colors.white, iColor = Colors.white}){
     return DeliveryTextFields(DeliveryTextFieldsVM(controller, label, placeholder:placeholder, isObscure: true, labelStyleColor: tColor, bColor:bColor, iconColor: iColor));
   }
+
+
+
+  //LJTheme
+  Widget ljUITextField1({placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0}){
+    return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding:EdgeInsets.only(bottom:5),
+                    // padding: EdgeInsets.fromLTRB(27.9, 0, 27.9, 0),
+                    child: Text(
+                      placeholder,
+                      style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:lfontSz),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color:bColor),
+                      color: Colors.transparent,
+                    ),
+                    padding: EdgeInsets.all(5),
+                    child: TextField(
+                        style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: tColor,
+                          ),
+                        )
+                        
+                        ),
+                  )
+    ]);
+  }
 }
