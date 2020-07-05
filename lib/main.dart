@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: MyHomePage(title: ''),
-      home:WUITabPage()
+      home: MyHomePage(title: ''),
+      // home:WUITabPage()
     );
   }
 }
@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             radioButtons(),
             textFields(),
             tableViewCells(),
+            cards()
           ],
         ),
       )),
@@ -81,7 +82,12 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   }
   Widget tableViewCells(){
     return Container(child:Column(children:[
-      WalletUITheme.instance.tableViewCells(vm.toggle, toggle)
+      WalletUITheme.instance.tableViewCells(context,vm.toggle, toggle)
+    ]));
+  }
+  Widget cards(){
+    return Container(child:Column(children:[
+      WalletUITheme.instance.cards()
     ]));
   }
   toggle(){

@@ -94,4 +94,113 @@ class TableViewCellsSubUI{
               );
   }
 
+  Widget wUITransactionCell(TableViewCellsSubUIVM vm){
+    return GestureDetector(
+      onTap: () {},
+      child: GestureDetector(
+        onTap: () {
+
+        },
+        child: Card(
+          elevation: 0,
+          color: Colors.transparent,
+          child: Container(
+            width:MediaQuery.of(vm.context).size.width,
+            padding:EdgeInsets.all(10),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(20, 25, 15, 0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: CircleAvatar(
+                              backgroundColor: const Color(0xff2a4f67),
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  vm.currency,
+                                  style: TextStyleUtil.wUITextFieldLabel(fontSz:30, color:vm.cColor),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 14,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  vm.title,
+                                  style: TextStyleUtil.wUITextFieldLabel(fontSz:18, color:vm.tColor),
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  vm.subtitle,
+                                  style: TextStyleUtil.wUITextFieldLabel(fontSz: 14, color:vm.tColor),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              vm.amount,
+                              textAlign: TextAlign.end,
+                              style: TextStyleUtil.wUITextFieldLabel(fontSz:14, color:vm.tColor)
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              vm.date,
+                              textAlign: TextAlign.end,
+                              style: TextStyleUtil.wUITextFieldLabel(fontSz:12, color:vm.tColor),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 14,
+                  ),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                      child: Container(
+                        height: 1,
+                        color: const Color(0xff23475d),
+                      )),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+}
+
+class TableViewCellsSubUIVM{
+  BuildContext context;
+  Color tColor;
+  Color cColor;
+  String currency;
+  String title;
+  String subtitle;
+  String amount;
+  String date;
+  TableViewCellsSubUIVM.transactionCell(this.context, {this.title="", this.subtitle="", this.amount="", this.date="", this.tColor = Colors.black, this.currency = "₱", this.cColor = Colors.black});
+
 }

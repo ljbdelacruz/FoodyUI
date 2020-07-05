@@ -13,15 +13,17 @@ class ButtonSubUI{
   static ButtonSubUI instance = ButtonSubUI();
 
   //TODO: Buttons WalletUI
-  Widget wUIButton1(String title, NormalCallback click){
+  Widget wUIButton1(String title, NormalCallback click, {Color tColor = Colors.white, Color bgColor = Colors.red}){
     return ButtonWidget(
               text: title,
               onTap: click,
+              color: tColor,
+              backgroudColor: bgColor,
     );
   }
   Widget wUIButton2(String title, NormalCallback click, {Color bColor = Colors.yellow}){
     return ButtonWidget.outline(
-                  text: "Sign up",
+                  text: title,
                   color: ColorsService.instance.yellowColor(),
                   onTap: click,
     );
@@ -35,6 +37,8 @@ class ButtonSubUI{
             onTap: click,
     );
   }
+
+
   Widget wUIRadioButton(bool value, NormalCallback click, {bColor = Colors.grey, cbColor = Colors.white, selColor = Colors.red}){
     return Container(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
