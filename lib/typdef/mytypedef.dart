@@ -6,6 +6,7 @@ typedef GetStringData= void Function(String data);
 typedef GetDateTimeCallback = void Function(DateTime url);
 typedef GetIntData(int data);
 typedef GetInt2Data(int data, int data2);
+typedef GetDouble2Data(double data, double data2);
 typedef GetDynamicData(dynamic data);
 typedef NormalCallback();
 typedef ContextCallback(BuildContext context);

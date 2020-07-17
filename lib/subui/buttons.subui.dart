@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foody_ui/components/buttons/buttonloader.buttons.dart';
 import 'package:foody_ui/components/buttons/switch.buttons.dart';
 import 'package:foody_ui/components/buttons/walletButton.buttons.dart';
 import 'package:foody_ui/services/color.service.dart';
@@ -99,6 +100,25 @@ class ButtonSubUI{
               ),
             ],
           );
+  }
+
+
+  //TODO: lj theme
+
+  Widget buttonLoader1(NormalCallback click, {String title="", double titleFz=12, Color tColor = Colors.white, double bRadius=5, double bHeight = 50, Color bgColor = Colors.blue}){
+    return ButtonLoader(ButtonLoaderVM.alert(title, titleFz, tColor, bRadius, bHeight, bgColor), click, (){});
+  }
+
+  Widget lblHighlightBtn(NormalCallback click, {String lbl = "Don't have an account?  ", String btn = "Register here", tColor=Colors.black, bColor = Colors.black}){
+    return Container(child:Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children:[
+      Text(lbl, style:TextStyle(fontSize:12, color:tColor)),
+          GestureDetector(
+            onTap:click,
+            child:Text(btn, style:TextStyle(color:bColor, decoration: TextDecoration.underline, fontSize:13))),
+    ]));
   }
 
 }

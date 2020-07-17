@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foody_ui/components/textfields/delivery.textfields.dart';
 import 'package:foody_ui/services/color.service.dart';
+import 'package:foody_ui/services/screen.service.dart';
 import 'package:foody_ui/typdef/mytypedef.dart';
 import 'package:foody_ui/util/text_style_util.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class TextFieldSubUI{
   static TextFieldSubUI instance = TextFieldSubUI();
@@ -131,7 +133,7 @@ class TextFieldSubUI{
 
 
   //LJTheme
-  Widget ljUITextField1({placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0}){
+  Widget ljUITextField1(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true}){
     return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -150,6 +152,8 @@ class TextFieldSubUI{
                     ),
                     padding: EdgeInsets.all(5),
                     child: TextField(
+                        enabled: isEnabled,
+                        controller:controller,
                         style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
                         obscureText: false,
                         decoration: InputDecoration(
@@ -158,9 +162,63 @@ class TextFieldSubUI{
                             color: tColor,
                           ),
                         )
-                        
                         ),
                   )
     ]);
   }
+  Widget pinCodeTextField(GetStringData scall, {int maxLength = 4, htbColor = Colors.yellow, Color dbColor = Colors.white, String maskChar = "\u25CF"}){
+    double width = 70;
+    double height = 80;
+    ScreenService.adjustMPINSize((mwidth, mheight){
+        width=mwidth;
+        height=mheight;
+    });
+    return PinCodeTextField(maxLength: maxLength, hasTextBorderColor: htbColor, 
+                              defaultBorderColor: dbColor,
+                              errorBorderColor: Colors.red,
+                              pinBoxHeight: height,
+                              pinBoxWidth: width,
+                              wrapAlignment: WrapAlignment.center,
+                              hideCharacter: true, 
+                              maskCharacter: maskChar,
+                              pinTextStyle: TextStyle(color:Colors.white), onDone: (otp){
+                                scall(otp);
+    },);
+  }
+  Widget pinCodeTextField1(GetStringData scall, {String label = ""}){
+    return Column(children:[
+      Text(label),
+      pinCodeTextField((scall))
+    ]);
+  }
+
+  Widget ljUnderlinedTF(BuildContext context, TextEditingController controller, NormalCallback click, {bool obscureText = false, bool isEnabled = true, String placeholder = "", double fontSz = 12, Color tColor = Colors.black}){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(padding:EdgeInsets.only(left:30), child:Text(placeholder, style:TextStyleUtil.textNormal(tColor:tColor, fontSz:fontSz))),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: TextField(
+            controller:controller,
+            enableInteractiveSelection: isEnabled,
+            // enabled: this.isEnabled,
+            style: Theme.of(context).textTheme.bodyText1,
+            obscureText: obscureText,
+            onTap: (){
+              if(click != null){
+                FocusScope.of(context).requestFocus(new FocusNode());
+                click();
+              }
+            },
+            decoration: InputDecoration(
+              hintStyle: Theme.of(context).textTheme.bodyText1,
+            ),
+          )
+        )
+      ],
+    );
+  }
+
+
 }
