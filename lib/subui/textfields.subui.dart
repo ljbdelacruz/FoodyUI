@@ -133,7 +133,7 @@ class TextFieldSubUI{
 
 
   //LJTheme
-  Widget ljUITextField1(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true}){
+  Widget ljUITextField1(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true, TextInputType keyboard = TextInputType.text}){
     return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -154,6 +154,7 @@ class TextFieldSubUI{
                     child: TextField(
                         enabled: isEnabled,
                         controller:controller,
+                        keyboardType: keyboard,
                         style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
                         obscureText: false,
                         decoration: InputDecoration(
@@ -181,9 +182,10 @@ class TextFieldSubUI{
                               wrapAlignment: WrapAlignment.center,
                               hideCharacter: true, 
                               maskCharacter: maskChar,
-                              pinTextStyle: TextStyle(color:Colors.white), onDone: (otp){
-                                scall(otp);
-    },);
+                              onTextChanged: (otpInput){
+                                scall(otpInput);
+                              },
+                              pinTextStyle: TextStyle(color:dbColor));
   }
   Widget pinCodeTextField1(GetStringData scall, {String label = ""}){
     return Column(children:[

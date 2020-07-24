@@ -8,11 +8,11 @@ class LJThemeUI{
   static LJThemeUI instance = LJThemeUI();
 
 
-  Widget textFields(){
+  Widget textFields(TextEditingController controller){
     return Container(
       padding:EdgeInsets.all(20),
       child: Column(children:[
-        TextFieldSubUI.instance.ljUITextField1(placeholder:"Test TF 1")
+        TextFieldSubUI.instance.ljUITextField1(controller,placeholder:"Test TF 1")
     ]));
   }
 

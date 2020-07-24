@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     return Container(child:Column(children:[
       WalletUITheme.instance.walletUITextFields(context),
       DeliveryUITheme.instance.deliveryUITextFields(context, vm.textField1),
-      LJThemeUI.instance.textFields()
+      // LJThemeUI.instance.textFields()
     ]));
   }
   Widget tableViewCells(){
