@@ -51,7 +51,7 @@ class WalletUITheme{
     return Column(children:[
       TableViewCellsSubUI.instance.wUITBCellIcon1(tColor:Colors.black),
       TableViewCellsSubUI.instance.wUITBCellToggle1(value, click, tColor:Colors.black),
-      TableViewCellsSubUI.instance.wUITransactionCell(TableViewCellsSubUIVM.transactionCell(context, title:"Hello world", subtitle:"Best Buy", date:"5 Dec, 2020", amount:"₱ 100"))
+      TableViewCellsSubUI.instance.wUITransactionCell(TableViewCellsSubUIVM.transactionCell(context, title:"Hello world", subtitle:"Best Buy", date:"5 Dec, 2020", amount:"₱ 100")),
     ]);
   }
 

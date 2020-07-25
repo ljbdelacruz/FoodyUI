@@ -60,5 +60,9 @@ class ColorsService{
   Color transColor1(){
     return Color(0xff03CAFF).withOpacity(0.5);
   }
+  Color halfStar(){
+    return Color(0xFFFFB24D);
+  }
+
 
 }

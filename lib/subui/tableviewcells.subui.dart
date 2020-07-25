@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foody_ui/components/carditem/carditem.widget.dart';
 import 'package:foody_ui/subui/buttons.subui.dart';
 import 'package:foody_ui/typdef/mytypedef.dart';
 import 'package:foody_ui/util/text_style_util.dart';
@@ -18,12 +19,14 @@ class TableViewCellsSubUI{
   }
 
 
-  Widget wUICells(Widget sideItem, {text = "Title", subtitle="Subtitle" ,tColor = Colors.white, bColor = Colors.grey, uColor = Colors.grey}){
+  Widget wUICells(Widget sideItem, {text = "Title", subtitle="Subtitle" ,tColor = Colors.white, bColor = Colors.grey, uColor = Colors.grey, NormalCallback event}){
     return Container(
                 padding: EdgeInsets.fromLTRB(20, 25, 15, 0),
                 child: GestureDetector(
                   onTap: () {
-                    print("Dark Mode Pressed");
+                    if(event != null){
+                      event();
+                    }
                   },
                   child: Container(
                     child: Container(
@@ -189,6 +192,16 @@ class TableViewCellsSubUI{
       ),
     );
   }
+  //FOODY UI cells
+  Widget fUICardWiget(CardWidgetVM vm){
+    return CardWidget((){
+      //TODO: click direction
+    }, (){
+      //TODO: click item
+    },vm:vm, heroTag:"");
+  }
+
+
 
 }
 
