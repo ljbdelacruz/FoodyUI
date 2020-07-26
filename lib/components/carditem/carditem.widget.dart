@@ -14,7 +14,12 @@ class CardWidget extends StatelessWidget {
   CardWidget(this.direction, this.click, {Key key, this.vm, this.heroTag}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: (){
+        print("Tap item");
+        click();
+      },
+      child: Container(
       width: 292,
       margin: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 20),
       decoration: BoxDecoration(
@@ -34,9 +39,7 @@ class CardWidget extends StatelessWidget {
             fit: StackFit.loose,
             alignment: AlignmentDirectional.bottomStart,
             children: <Widget>[
-              Hero(
-                tag: this.heroTag + vm.id,
-                child: ClipRRect(
+              ClipRRect(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                   child: CachedNetworkImage(
                     height: 150,
@@ -51,7 +54,6 @@ class CardWidget extends StatelessWidget {
                     ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                ),
               ),
               Row(
                 children: <Widget>[
@@ -62,11 +64,11 @@ class CardWidget extends StatelessWidget {
                     child: vm.closed
                         ? Text(
                             vm.closedS,
-                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: Theme.of(context).primaryColor)),
+                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: vm.tsColor))
                           )
                         : Text(
                             vm.openS,
-                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: Theme.of(context).primaryColor)),
+                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: vm.tsColor)),
                           ),
                   ),
                   Container(
@@ -76,11 +78,11 @@ class CardWidget extends StatelessWidget {
                     child: vm.canDelivery
                         ? Text(
                             vm.deliveryS,
-                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: Theme.of(context).primaryColor)),
+                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: vm.tsColor)),
                           )
                         : Text(
                             vm.pickupS,
-                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: Theme.of(context).primaryColor)),
+                            style: Theme.of(context).textTheme.caption.merge(TextStyle(color: vm.tsColor)),
                           ),
                   ),
                 ],
@@ -125,10 +127,7 @@ class CardWidget extends StatelessWidget {
                     children: <Widget>[
                       FlatButton(
                         padding: EdgeInsets.all(0),
-                        onPressed: () {
-                          // Navigator.of(context).pushNamed('/Pages', arguments: new RouteArgument(id: '1', param: restaurant));
-
-                        },
+                        onPressed: direction,
                         child: Icon(Icons.directions, color: vm.tColor),
                         color: vm.buttonColor,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -138,6 +137,7 @@ class CardWidget extends StatelessWidget {
                               overflow: TextOverflow.fade,
                               maxLines: 1,
                               softWrap: false,
+                              style:TextStyleUtil.wUITextFieldLabel(color:vm.tColor, fontSz: 14)
                       ),
                     ],
                   ),
@@ -147,7 +147,7 @@ class CardWidget extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -159,6 +159,8 @@ class CardWidgetVM{
   String title;
   String subtitle;
   String review;
+
+  Color tsColor;
   String closedS;
   String openS;
   bool canDelivery;
@@ -168,5 +170,5 @@ class CardWidgetVM{
   Color buttonColor;
   Color bgColor;
 
-  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white});
+  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white, this.tsColor = Colors.white});
 }

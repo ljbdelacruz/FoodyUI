@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foody_ui/components/carditem/carditem.widget.dart';
+import 'package:foody_ui/components/hero/herosample.page.dart';
 import 'package:foody_ui/subui/buttons.subui.dart';
 import 'package:foody_ui/typdef/mytypedef.dart';
 import 'package:foody_ui/util/text_style_util.dart';
@@ -193,12 +194,19 @@ class TableViewCellsSubUI{
     );
   }
   //FOODY UI cells
-  Widget fUICardWiget(CardWidgetVM vm){
-    return CardWidget((){
+  Widget fUICardWiget(BuildContext context, String tag,CardWidgetVM vm){
+    return
+     Hero(
+       tag:tag,
+       child:
+     CardWidget((){
       //TODO: click direction
+      print("Direction clicked");
     }, (){
       //TODO: click item
-    },vm:vm, heroTag:"");
+      print("Clicked item");
+       Navigator.push(context,MaterialPageRoute(builder: (context) => HeroSamplePage(HeroSamplePageVM(tag, image:vm.image, title:vm.title, desc:vm.subtitle), (){})));
+    },vm:vm, heroTag:""));
   }
 
 

@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget tableViewCells(){
     return Container(child:Column(children:[
       WalletUITheme.instance.tableViewCells(context,vm.toggle, toggle),
-      DeliveryUITheme.instance.tableViewCells()
+      DeliveryUITheme.instance.tableViewCells(context)
     ]));
   }
   Widget cards(){
