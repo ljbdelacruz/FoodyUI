@@ -56,7 +56,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             radioButtons(),
             textFields(),
             tableViewCells(),
-            cards()
+            cards(),
+            incrementorUI(),
+            SizedBox(height:100),
           ],
         ),
       )),
@@ -91,6 +93,24 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       WalletUITheme.instance.cards()
     ]));
   }
+  Widget incrementorUI(){
+    return Container(child:Column(children:[
+      DeliveryUITheme.instance.incrementor((){
+        //TODO: inc
+        setState((){
+          vm.count++;
+        });
+      }, (){
+        //TODO: dec
+        if(vm.count > 0){
+          setState((){
+            vm.count--;
+          });
+        }
+      }, vm.count.toString())
+    ]));
+  }
+
   toggle(){
         setState((){
           vm.toggle = !vm.toggle;
@@ -102,8 +122,7 @@ class HomeControllerSetupVM{
   TextEditingController textField1=TextEditingController();
   bool toggle = false;
   HomeControllerSetupVM();
-
-
+  int count = 0;
 
 }
 
