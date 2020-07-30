@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foody_ui/apptheme/delivery.theme.dart';
 import 'package:foody_ui/apptheme/ljui.theme.dart';
 import 'package:foody_ui/apptheme/walletui.theme.dart';
+import 'package:foody_ui/components/sidemenu/fui1.sidemenu.dart';
 import 'package:foody_ui/components/textfields/delivery.textfields.dart';
 import 'package:foody_ui/components/textfields/delivery1.textfields.dart';
 import 'package:foody_ui/pages/wUITab.page.dart';
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      endDrawer: FUI1Sidemenu(FUI1SidemenuVM.temp(option1Header:"Test header 1"), (){}),
       body: SingleChildScrollView(child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
