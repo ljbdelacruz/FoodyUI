@@ -7,6 +7,8 @@ import 'package:foody_ui/components/textfields/delivery.textfields.dart';
 import 'package:foody_ui/components/textfields/delivery1.textfields.dart';
 import 'package:foody_ui/pages/wUITab.page.dart';
 
+import 'components/subui/footer/fuifooter.subui.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -64,6 +66,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           ],
         ),
       )),
+      bottomNavigationBar: FuiFooterSubUI.instance.footer1(vm.tab, (tab){
+        print(tab);
+        print("Selected Tab");
+        setState(() {
+          vm.tab = tab;
+        });
+      }, [FUIFooterItems.temp(icon: Icons.shopping_cart), FUIFooterItems.temp(icon:Icons.map), FUIFooterItems.temp1(icon:Icons.add), FUIFooterItems.temp(icon:Icons.local_activity), FUIFooterItems.temp(icon:Icons.settings)]),
     );
   }
 
@@ -125,6 +134,7 @@ class HomeControllerSetupVM{
   bool toggle = false;
   HomeControllerSetupVM();
   int count = 0;
+  int tab = 0;
 
 }
 
