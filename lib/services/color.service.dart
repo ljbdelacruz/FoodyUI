@@ -63,6 +63,9 @@ class ColorsService{
   Color halfStar(){
     return Color(0xFFFFB24D);
   }
+  static Color dirtyWhite(){
+    return Color(0xffE8E4C9);
+  }
 
 
 }

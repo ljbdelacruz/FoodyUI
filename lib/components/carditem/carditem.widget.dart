@@ -47,7 +47,7 @@ class CardWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     imageUrl: vm.image,
                     placeholder: (context, url) => Image.asset(
-                      'assets/img/loading.gif',
+                      vm.loaderPlaceholder,
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: 150,
@@ -156,6 +156,7 @@ class CardWidgetVM{
   bool closed;
   String distance;
   String image;
+  String loaderPlaceholder;
   String title;
   String subtitle;
   String review;
@@ -170,5 +171,5 @@ class CardWidgetVM{
   Color buttonColor;
   Color bgColor;
 
-  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white, this.tsColor = Colors.white});
+  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white, this.tsColor = Colors.white, this.loaderPlaceholder=""});
 }

@@ -32,6 +32,21 @@ class CardSubUI{
     )
     );
   }
+
+  Widget dUICard(BuildContext context, Widget content, {Color bgColor = Colors.white, double width = 292}){
+    return Container(
+      width: width,
+      margin: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 20),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(color: Theme.of(context).focusColor.withOpacity(0.1), blurRadius: 15, offset: Offset(0, 5)),
+        ],
+      ),
+      child:content
+    );
+  }
 }
 
 

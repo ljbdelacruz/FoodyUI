@@ -14,4 +14,11 @@ class LoaderSubUI{
     );
   }
 
+  Widget cardWidgetLoader(){
+    return Image.asset(
+              'assets/images/loader/loading_card.gif',
+              fit: BoxFit.contain,
+    );
+  }
+
 }

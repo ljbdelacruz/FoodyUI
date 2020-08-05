@@ -208,6 +208,13 @@ class TableViewCellsSubUI{
        Navigator.push(context,MaterialPageRoute(builder: (context) => HeroSamplePage(HeroSamplePageVM(tag, image:vm.image, title:vm.title, desc:vm.subtitle), (){})));
     },vm:vm, heroTag:""));
   }
+  Widget heroWidget(BuildContext context, String tag, Widget child){
+    return Hero(
+       tag:tag,
+       child:child,
+    );
+  }
+
 
 
 
