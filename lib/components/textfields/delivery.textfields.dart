@@ -4,10 +4,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foody_ui/typdef/mytypedef.dart';
 
 class DeliveryTextFields extends StatefulWidget{
+  final NormalCallback onEndEdit;
   final DeliveryTextFieldsVM vm;
-  DeliveryTextFields(this.vm);
+  DeliveryTextFields(this.vm, {this.onEndEdit});
   @override
   DeliveryTextFieldsState createState() => DeliveryTextFieldsState();
 }
@@ -30,6 +32,12 @@ class DeliveryTextFieldsState extends State<DeliveryTextFields> {
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: widget.vm.bColor)),
                         enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: widget.vm.bColor)),
                       ),
+                      onEditingComplete: (){
+                        print("End editing");
+                        if(widget.onEndEdit != null){
+                          widget.onEndEdit();
+                        }
+                      },
                     );
   }
 }
@@ -43,5 +51,5 @@ class DeliveryTextFieldsVM{
   Color iconColor;
   bool isObscure;
   Color bColor;
-  DeliveryTextFieldsVM(this.controller, this.label, {this.placeholder = "", this.labelStyleColor = Colors.blue, this.icon = Icons.email, this.iconColor = Colors.blue, this.isObscure = false, this.bColor = Colors.white});
+  DeliveryTextFieldsVM(this.controller, this.label, {this.placeholder = "", this.labelStyleColor = Colors.blue, this.icon = Icons.email, this.iconColor = Colors.blue, this.isObscure = false, this.bColor = Colors.blue});
 }
