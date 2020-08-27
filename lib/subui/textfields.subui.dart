@@ -129,6 +129,15 @@ class TextFieldSubUI{
   Widget dfUITextfield1Pass(TextEditingController controller, String label, {placeholder="", tColor = Colors.white, bColor = Colors.white, iColor = Colors.white}){
     return DeliveryTextFields(DeliveryTextFieldsVM(controller, label, placeholder:placeholder, isObscure: true, labelStyleColor: tColor, bColor:bColor, iconColor: iColor));
   }
+  Widget dfUITextField2(TextEditingController controller, {Color hColor = Colors.grey, TextInputType keyboard = TextInputType.text, String initValue=""}){
+    return new TextFormField(
+                          style: TextStyle(color:hColor),
+                          controller: controller,
+                          keyboardType: keyboard,
+                          // decoration: getInputDecoration(hintText: S.of(context).john_doe, labelText: S.of(context).full_name),
+                          initialValue: initValue,
+    );
+  }
 
 
 

@@ -26,7 +26,7 @@ class Viewer1LottieVM{
   double width=300;
   double height=300;
   AnimationController controller;  
-  Viewer1LottieVM(this.animationJSON);
+  Viewer1LottieVM(this.animationJSON, {this.width=300, this.height=300});
   Viewer1LottieVM.activityPage(this.animationJSON){
     this.width=180.0;
     this.height=180.0;

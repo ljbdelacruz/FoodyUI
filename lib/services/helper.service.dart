@@ -33,4 +33,29 @@ class HelperService{
     //   return '';
     // }
   }
+
+  static Widget getPrice(double myPrice, String currency, BuildContext context, {TextStyle style}) {
+    if (style != null) {
+      style = style.merge(TextStyle(fontSize: style.fontSize + 2));
+    }
+    try {
+      if (myPrice == 0) {
+        return Text('-', style: style ?? Theme.of(context).textTheme.subtitle1);
+      }
+      return RichText(
+        softWrap: false,
+        overflow: TextOverflow.fade,
+        maxLines: 1,
+        text: TextSpan(
+                text: currency,
+                style: style ?? Theme.of(context).textTheme.subtitle1,
+                children: <TextSpan>[
+                  TextSpan(text: myPrice.toStringAsFixed(2) ?? '', style: style ?? Theme.of(context).textTheme.subtitle1),
+                ],
+              ),
+      );
+    } catch (e) {
+      return Text('');
+    }
+  }
 }

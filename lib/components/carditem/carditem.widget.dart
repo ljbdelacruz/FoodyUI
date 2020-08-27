@@ -160,6 +160,7 @@ class CardWidgetVM{
   String title;
   String subtitle;
   String review;
+  bool delivery;
 
   Color tsColor;
   String closedS;
@@ -171,5 +172,5 @@ class CardWidgetVM{
   Color buttonColor;
   Color bgColor;
 
-  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white, this.tsColor = Colors.white, this.loaderPlaceholder=""});
+  CardWidgetVM(this.id, this.distance, {this.closed=false, this.image="", this.title="", this.subtitle="", this.review="0", this.closedS="Closed", this.openS="Open", this.canDelivery = false, this.deliveryS = "Delivery", this.pickupS = "Pickup", this.tColor = Colors.grey, this.buttonColor = Colors.lightBlue, this.bgColor = Colors.white, this.tsColor = Colors.white, this.loaderPlaceholder="", this.delivery = false});
 }
