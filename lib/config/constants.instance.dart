@@ -9,6 +9,7 @@ import 'package:device_info/device_info.dart';
 class Constants{
   static Constants instance=Constants();
   DeviceInfo deviceData = DeviceInfo.mydefault();
+  String defaultImage = "https://nerdreactor.com/wp-content/uploads/2017/09/490bcbdfb730adb3dbcf33cd9301622e-thor-avengers-loki-thor.jpg";
 }
 
 

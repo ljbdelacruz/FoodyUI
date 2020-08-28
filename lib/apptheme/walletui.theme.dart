@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foody_ui/services/navigator.service.dart';
 import 'package:foody_ui/subui/avatar.subui.dart';
 import 'package:foody_ui/subui/buttons.subui.dart';
 import 'package:foody_ui/subui/card.subui.dart';
@@ -34,7 +35,9 @@ class WalletUITheme{
         SizedBox(height:30),
         ButtonSubUI.instance.wUISwitch(),
         ButtonSubUI.instance.wUINotifButton(1, (){}),
-        ButtonSubUI.instance.wUIButton1("Button 1", (){}),
+        ButtonSubUI.instance.wUIButton1("Button 1", (){
+          NavigatorService.navigateToTestProductInfo(context);
+        }),
         ButtonSubUI.instance.wUIButton2("Button 2", (){})
     ]));
   }
