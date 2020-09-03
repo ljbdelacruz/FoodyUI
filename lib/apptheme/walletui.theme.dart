@@ -35,7 +35,8 @@ class WalletUITheme{
         ButtonSubUI.instance.wUISwitch(),
         ButtonSubUI.instance.wUINotifButton(1, (){}),
         ButtonSubUI.instance.wUIButton1("Button 1", (){
-          NavigatorService.navigateToTestProductInfo(context);
+          // NavigatorService.navigateToTestProductInfo(context);
+          NavigatorService.navigateToTestStoreInfo(context);
         }),
         ButtonSubUI.instance.wUIButton2("Button 2", (){})
     ]));
