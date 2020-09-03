@@ -70,10 +70,10 @@ class DFProductInfoPage extends StatelessWidget {
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
                                 imageUrl: vm.product.image,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/img/loading.gif',
-                                  fit: BoxFit.cover,
-                                ),
+                                // placeholder: (context, url) => Image.asset(
+                                //   'assets/img/loading.gif',
+                                //   fit: BoxFit.cover,
+                                // ),
                                 errorWidget: (context, url, error) => Icon(Icons.error),
                               ),
                             ),

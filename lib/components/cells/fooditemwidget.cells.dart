@@ -30,10 +30,10 @@ class FoodsCarouselItemWidget extends StatelessWidget {
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
                       imageUrl: vm.image,
-                      placeholder: (context, url) => Image.asset(
-                        'assets/img/loading.gif',
-                        fit: BoxFit.cover,
-                      ),
+                      // placeholder: (context, url) => Image.asset(
+                      //   'assets/img/loading.gif',
+                      //   fit: BoxFit.cover,
+                      // ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),

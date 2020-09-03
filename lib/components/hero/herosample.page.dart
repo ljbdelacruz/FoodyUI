@@ -33,12 +33,12 @@ class HeroSamplePageState extends State<HeroSamplePage> {
                     width: double.infinity,
                     fit: BoxFit.cover,
                     imageUrl: widget.vm.image,
-                    placeholder: (context, url) => Image.asset(
-                      'assets/img/loading.gif',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 300,
-                    ),
+                    // placeholder: (context, url) => Image.asset(
+                    //   'assets/img/loading.gif',
+                    //   fit: BoxFit.cover,
+                    //   width: double.infinity,
+                    //   height: 300,
+                    // ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         Visibility(visible: widget.vm.isShow, child: Column(children:[
