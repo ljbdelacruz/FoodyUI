@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foody_ui/services/color.service.dart';
+import 'package:foody_ui/typdef/mytypedef.dart';
 
 
 
@@ -22,8 +23,9 @@ class FoodItem2WidgetProduct{
 
 class FoodItem2Widget extends StatelessWidget {
   final FoodItem2WidgetVM vm;
+  final NormalCallback click;
 
-  const FoodItem2Widget(this.vm);
+  const FoodItem2Widget(this.vm, {this.click});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,9 @@ class FoodItem2Widget extends StatelessWidget {
       focusColor: Theme.of(context).accentColor,
       highlightColor: Theme.of(context).primaryColor,
       onTap: () {
+        if(this.click != null){
+          this.click();
+        }
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
