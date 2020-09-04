@@ -17,10 +17,11 @@ class WalletUITheme{
   static WalletUITheme instance = WalletUITheme();
 
   Widget walletUITextFields(BuildContext context){
+    TextEditingController controller = new TextEditingController();
     return Container(
       // color:Colors.black,
       child:Column(children:[
-        TextFieldSubUI.instance.wUITextField1("Email or Username", tColor:Colors.grey)
+        TextFieldSubUI.instance.wUITextField1(controller,"Email or Username", tColor:Colors.grey)
     ]));
   }
   Widget walletUIButtons(BuildContext context, bool value, NormalCallback click){

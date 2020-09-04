@@ -95,7 +95,7 @@ class TextFieldSubUI{
 
 
   //TODO: WalletUI TextField
-  Widget wUITextField1(String placeholder, {Color tColor = Colors.white, double lfontSz = 10, double cfontSz=13}){
+  Widget wUITextField1(TextEditingController controlller, String placeholder, {Color tColor = Colors.white, double lfontSz = 10, double cfontSz=13}){
     return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -109,6 +109,7 @@ class TextFieldSubUI{
                   Container(
                     padding: EdgeInsets.fromLTRB(27.9, 0, 27.9, 0),
                     child: TextField(
+                        controller:controlller,
                         style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
                         obscureText: false,
                         decoration: InputDecoration(
