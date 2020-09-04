@@ -11,6 +11,7 @@ import 'package:foody_ui/components/list/reviewlist1.widget.dart';
 import 'package:foody_ui/components/progress/circularloading.progress.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:foody_ui/services/color.service.dart';
+import 'package:foody_ui/typdef/mytypedef.dart';
 import 'package:foody_ui/util/text_style_util.dart';
 
 
@@ -49,8 +50,10 @@ class DFStoreInfoPageDetails{
 
 class DFStoreInfoPage extends StatelessWidget {
   final DFStoreInfoPageVM vm;
+  final NormalCallback clickMenuEvent;
+  final GetStringData clickProduct;
 
-  DFStoreInfoPage(this.vm);
+  DFStoreInfoPage(this.vm, {this.clickMenuEvent, this.clickProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,9 @@ class DFStoreInfoPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             // Navigator.of(context).pushNamed('/Menu', arguments: new RouteArgument(id: widget.routeArgument.id));
+            if(this.clickMenuEvent != null){
+              this.clickMenuEvent();
+            }
           },
           isExtended: true,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -300,7 +306,7 @@ class DFStoreInfoPage extends StatelessWidget {
                                         return SizedBox(height: 10);
                                       },
                                       itemBuilder: (context, index) {
-                                        return FoodItem2Widget(
+                                        return  FoodItem2Widget(
                                           FoodItem2WidgetVM(
                                           heroTag: 'food_detailsoption'+vm.productDetails.productItems.elementAt(index).id,
                                           item: vm.productDetails.productItems.elementAt(index)),
