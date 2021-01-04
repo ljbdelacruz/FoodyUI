@@ -105,17 +105,17 @@ class ButtonSubUI{
 
   //TODO: lj theme
 
-  Widget buttonLoader1(NormalCallback click, {String title="", double titleFz=12, Color tColor = Colors.white, double bRadius=5, double bHeight = 50, Color bgColor = Colors.blue}){
-    return ButtonLoader(ButtonLoaderVM.alert(title, titleFz, tColor, bRadius, bHeight, bgColor), click, (){});
+  Widget buttonLoader1(NormalCallback click, {String title="", double titleFz=12, Color tColor = Colors.white, double bRadius=5, double bHeight = 50, Color bgColor = Colors.blue, int mystate=0}){
+    return ButtonLoader(ButtonLoaderVM.alert(title, titleFz, tColor, bRadius, bHeight, bgColor, mystate: mystate), click, (){});
   }
 
-  Widget lblHighlightBtn(NormalCallback click, {String lbl = "Don't have an account?  ", String btn = "Register here", tColor=Colors.black, bColor = Colors.black}){
+  Widget lblHighlightBtn(NormalCallback click, {String lbl = "Don't have an account?  ", String btn = "Register here", tColor=Colors.black, bColor = Colors.black, double fontSz=12}){
     return Container(child:Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children:[
-      Text(lbl, style:TextStyle(fontSize:12, color:tColor)),
-          GestureDetector(
+      Text(lbl, style:TextStyle(fontSize:fontSz, color:tColor)),
+      GestureDetector(
             onTap:click,
             child:Text(btn, style:TextStyle(color:bColor, decoration: TextDecoration.underline, fontSize:13))),
     ]));

@@ -6,6 +6,7 @@ class CustomScrollSlivers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
       scrollDirection: vm.scrollDirection,
       slivers: vm.items,
     );

@@ -143,7 +143,7 @@ class TextFieldSubUI{
 
 
   //LJTheme
-  Widget ljUITextField1(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true, TextInputType keyboard = TextInputType.text}){
+  Widget ljUITextField1(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true, TextInputType keyboard = TextInputType.text, NormalCallback click, BuildContext context}){
     return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -167,6 +167,12 @@ class TextFieldSubUI{
                         keyboardType: keyboard,
                         style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
                         obscureText: false,
+                        onTap: (){
+                          if(click != null){
+                            FocusScope.of(context).requestFocus(new FocusNode());
+                            click();
+                          }
+                        },
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintStyle: TextStyle(
@@ -177,6 +183,48 @@ class TextFieldSubUI{
                   )
     ]);
   }
+  Widget ljUITextField2(TextEditingController controller, {placeholder = "", tColor = Colors.black, bColor = Colors.black, lfontSz = 10.0, cfontSz = 13.0, bool isEnabled = true, TextInputType keyboard = TextInputType.text, NormalCallback click, BuildContext context}){
+    return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding:EdgeInsets.only(bottom:5),
+                    // padding: EdgeInsets.fromLTRB(27.9, 0, 27.9, 0),
+                    child: Text(
+                      placeholder,
+                      style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:lfontSz),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color:bColor),
+                      color: Colors.transparent,
+                    ),
+                    padding: EdgeInsets.all(5),
+                    child: TextField(
+                        enabled: isEnabled,
+                        controller:controller,
+                        keyboardType: keyboard,
+                        style: TextStyleUtil.wUITextFieldLabel(color:tColor, fontSz:cfontSz),
+                        obscureText: false,
+                        onTap: (){
+                          if(click != null){
+                            click();
+                          }
+                        },
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(
+                            color: tColor,
+                          ),
+                        )
+                        ),
+                  )
+    ]);
+  }
+
+
+
   Widget pinCodeTextField(GetStringData scall, {int maxLength = 4, htbColor = Colors.yellow, Color dbColor = Colors.white, String maskChar = "\u25CF"}){
     double width = 70;
     double height = 80;
@@ -231,6 +279,34 @@ class TextFieldSubUI{
       ],
     );
   }
+
+  Widget underlinedTextField(TextEditingController controller, String placeholder, {Color tColor = Colors.grey, Color uColor = Colors.grey, double height = 40, TextInputType keyboard = TextInputType.text, NormalCallback onChange}){
+    return Container(
+      child:TextField(
+        controller:controller,
+        keyboardType: keyboard,
+        decoration: InputDecoration(   
+          hintText: placeholder,
+          hintStyle: TextStyleUtil.textNormal(fontSz:12, tColor: tColor.withOpacity(0.8)),
+          enabledBorder: UnderlineInputBorder(      
+            borderSide: BorderSide(color: tColor),   
+          ),  
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: tColor),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(color: tColor),
+          ),
+        ),
+        onChanged: (value){
+          if(onChange != null){
+            onChange();
+          }
+        },
+    ));
+  }
+
+
 
 
 }

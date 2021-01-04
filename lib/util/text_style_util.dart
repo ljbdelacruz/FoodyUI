@@ -32,6 +32,9 @@ class TextStyleUtil{
   static TextStyle textNormal({double fontSz=10, Color tColor = Colors.black}){
     return TextStyle(fontSize:fontSz, color: tColor);
   }
+  static TextStyle textDemi({double fontSz=10, Color tColor = Colors.black}){
+    return TextStyle(fontSize:fontSz, color: tColor, fontWeight: FontWeight.bold);
+  }
   static TextStyle textUnderlinedNormal({double fontSz=10, Color tColor = Colors.black}){
     return TextStyle(fontSize:fontSz, color: tColor, decoration: TextDecoration.underline);
   }

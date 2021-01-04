@@ -8,8 +8,10 @@ class StackSliver extends StatelessWidget {
   StackSliver(this.vm);
   @override
   Widget build(BuildContext context) {
+    double itemWidth=MediaQuery.of(context).size.width / vm.width;
+    double itemHeight = MediaQuery.of(context).size.height / vm.height;
     return SliverGrid(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: vm.crossAxisCount),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: vm.crossAxisCount, childAspectRatio: itemWidth / itemHeight),
           delegate: SliverChildListDelegate(
             vm.items,
           ),
@@ -19,7 +21,9 @@ class StackSliver extends StatelessWidget {
 
 class StackSliverVM{
   int crossAxisCount=3;
+  double width=1.3;
+  double height=2;
   //allows only sliver
   List<Widget> items = [];
-  StackSliverVM(this.items, this.crossAxisCount);
+  StackSliverVM(this.items, this.crossAxisCount, {this.width=1.3, this.height=2});
 }
